@@ -4,7 +4,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-
+/**
+ * @author Pablo Neira
+ */
 public class ClienteKiosko extends JFrame {
 	public ClienteKiosko() {
 		setTitle("Cliente");

@@ -1,13 +1,10 @@
 package es.studium.ControlTurnos;
-/**
- *@autor Alvaro Martos
-  **/
 import javax.swing.*;
 
 public class ClientePantalla extends JFrame {
     
     /**
-	 * 
+	 * @autor Alvaro Martos
 	 */
 	private static final long serialVersionUID = 1L;
 

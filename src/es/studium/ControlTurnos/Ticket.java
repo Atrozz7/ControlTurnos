@@ -1,5 +1,8 @@
 package es.studium.ControlTurnos;
 
+/**
+ * @author Paco
+ */
 public class Ticket {
 
 	String numero;

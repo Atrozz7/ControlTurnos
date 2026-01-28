@@ -3,7 +3,9 @@ package es.studium.ControlTurnos;
 import java.awt.BorderLayout;
 
 import javax.swing.*;
-
+/**
+ * @author Alvaro
+ */
 public class ClientePantalla extends JFrame {
     
     private static final long serialVersionUID = 1L;

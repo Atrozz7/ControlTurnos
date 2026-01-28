@@ -6,7 +6,12 @@ import javax.swing.*;
 
 public class ClientePantalla extends JFrame {
     
-    public ClientePantalla() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ClientePantalla() {
         initialize();
     }
     

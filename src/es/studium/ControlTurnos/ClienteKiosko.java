@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
 public class ClienteKiosko extends JFrame {
 	public ClienteKiosko() {
 		setSize(451,318);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setTitle("Cliente");
 		getContentPane().setLayout(null);
 

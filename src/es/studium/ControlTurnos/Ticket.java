@@ -1,18 +1,18 @@
 package es.studium.ControlTurnos;
 
-public class ClienteTicket {
+public class Ticket {
 
 	String numero;
 	String fecha;
 	String hora;
 	
-	public ClienteTicket() {
+	public Ticket() {
 		numero="";
 		fecha="";
 		hora="";
 	}
 	
-	public ClienteTicket(String numero, String fecha,String hora) {
+	public Ticket(String numero, String fecha,String hora) {
 		this.numero=numero;
 		this.fecha=fecha;
 		this.hora=hora;

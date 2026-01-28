@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
-public class Cliente extends JFrame {
-	public Cliente() {
+public class ClienteKiosko extends JFrame {
+	public ClienteKiosko() {
 		setTitle("Cliente");
 		getContentPane().setLayout(null);
 		

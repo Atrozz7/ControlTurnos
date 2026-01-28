@@ -1,5 +1,5 @@
 package es.studium.ControlTurnos;
 
-public class ClienteTurno {
+public class ClientePuesto {
 
 }

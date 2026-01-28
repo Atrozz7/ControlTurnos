@@ -6,7 +6,12 @@ import javax.swing.*;
 
 public class ClientePuesto extends JFrame {
     
-    public ClientePuesto() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ClientePuesto() {
         initialize();
     }
     

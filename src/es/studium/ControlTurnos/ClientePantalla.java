@@ -10,6 +10,7 @@ public class ClientePantalla extends JFrame {
 
 	public ClientePantalla() {
         initialize();
+        // 
     }
     
     private void initialize() {

@@ -33,6 +33,7 @@ public class ClientePuesto extends JFrame {
 		getContentPane().add(btnNewButton);
 
 		textField = new JTextField();
+		textField.setEnabled(false);
 		textField.setBounds(133, 59, 159, 54);
 		getContentPane().add(textField);
 		textField.setColumns(10);

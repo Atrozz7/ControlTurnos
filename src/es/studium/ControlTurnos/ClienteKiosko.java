@@ -9,7 +9,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * @author Pablo Neira
+ */
 public class ClienteKiosko extends JFrame {
     private static final long serialVersionUID = 1L;
     

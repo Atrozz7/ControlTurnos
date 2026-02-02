@@ -5,21 +5,24 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-/**
- * @author Gema
- * @date 28/01/2026
- * version 0
- */
-
 public class Servidor 
 {
-	private static ArrayList<Ticket> listaTickets;
-	
-	public static void main(String[] args)
+    private static ArrayList<Ticket> listaTickets;
+
+    // Contador para los turnos
+    private static int contadorTurnos = 1;
+
+    // 🔥Aqui genero los numeros de los turnos
+    public static synchronized String generarTurno()
+    {
+        return String.format("A%03d", contadorTurnos++);
+    }
+
+    public static void main(String[] args)
     {
         int puerto = 6666;
         listaTickets = new ArrayList<>();
-        
+
         try
         {
             ServerSocket servidor = new ServerSocket(puerto);

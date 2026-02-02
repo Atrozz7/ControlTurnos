@@ -94,7 +94,7 @@ public class ClienteKiosko extends JFrame {
         }
         
         // Generamos el ticket con la letra actual y el número con 3 ceros
-        return String.format("%c%03d", letraSerie, contadorTickets++);
+        return String.format("%c%03d", letraSerie, contadorTickets++); //
     }
 
     public static void main(String[] args) {

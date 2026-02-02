@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class Servidor 
 {
     private static ArrayList<Ticket> listaTickets;
+    
+    // Último turno atendido (formato: "A001;3")
+    public static String ultimoAtendido = "";
 
     // Atributos para la lógica de generación de turnos
     private static int contadorTurnos = 1;
@@ -20,30 +23,25 @@ public class Servidor
     /**
      * Genera el siguiente turno con formato Letra + 3 dígitos (Ej: A001).
      * Si llega a 999, pasa a la siguiente letra (B001).
-     * Es 'synchronized' para evitar que dos hilos generen el mismo número.
      */
     public static synchronized String generarTurno()
     {
-        // 1. Si superamos el límite de 999, saltamos de letra y reiniciamos contador
         if (contadorTurnos > 999) 
         {
             contadorTurnos = 1;
-            letraSerie++; // Pasa de 'A' a 'B', etc.
-            
-            // Opcional: Si llega después de la 'Z', vuelve a la 'A'
+            letraSerie++;
+
             if (letraSerie > 'Z') 
             {
                 letraSerie = 'A';
             }
         }
-        
-        // 2. Formateamos el string (Ej: 'A' y 1 -> "A001")
+
         return String.format("%c%03d", letraSerie, contadorTurnos++);
     }
 
     public static void main(String[] args)
     {
-        // Puerto de escucha (Asegúrate de que coincida con tus clientes)
         int puerto = 6666;
         listaTickets = new ArrayList<>();
 
@@ -52,17 +50,14 @@ public class Servidor
             System.out.println("========================================");
             System.out.println("   SERVIDOR DE TURNOS INICIADO");
             System.out.println("   Puerto: " + puerto);
-            System.out.println("   Esperando kioskos y puestos...");
+            System.out.println("   Esperando kioskos, puestos y pantallas...");
             System.out.println("========================================");
 
             while (true)
             {
-                // Esperamos conexión de un cliente (Kiosko, Pantalla o Puesto)
                 Socket cliente = servidor.accept();
-                
-                // Creamos un hilo para atender esa petición específica
                 HiloServidor hilo = new HiloServidor(cliente, listaTickets);
-                hilo.start();//
+                hilo.start();
             }
         }
         catch (IOException e)
@@ -72,3 +67,5 @@ public class Servidor
         }
     }
 }
+
+

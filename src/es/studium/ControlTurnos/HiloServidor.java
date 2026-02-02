@@ -24,9 +24,10 @@ public class HiloServidor extends Thread {
         try {
             String mensajeRecibido = entrada.readUTF();
 
+            // 1. KIOSKO PIDE UN TICKET
             if (mensajeRecibido.equals("SOLICITAR_TICKET")) {
                 synchronized (listaTickets) {
-                    // La lógica del formato A001 y el salto de letra está aquí:
+
                     String numero = Servidor.generarTurno();
 
                     String fechaActual = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -35,16 +36,42 @@ public class HiloServidor extends Thread {
                     Ticket nuevoTicket = new Ticket(numero, fechaActual, horaActual);
                     listaTickets.add(nuevoTicket);
 
-                    // Enviamos al kiosko el ticket final (Ej: B001)
                     salida.writeUTF(numero);
                     System.out.println("Ticket generado exitosamente: " + numero);
                 }
             }
-            // ... resto de lógica (SIGUIENTE_PUESTO, etc.)
-            
+
+            // 2. PUESTO PIDE SIGUIENTE (CON NÚMERO DE PUESTO)
+            else if (mensajeRecibido.startsWith("SIGUIENTE_PUESTO_")) {
+
+                int puesto = Integer.parseInt(mensajeRecibido.split("_")[2]);
+
+                synchronized (listaTickets) {
+                    if (!listaTickets.isEmpty()) {
+                        Ticket ticketAtendido = listaTickets.remove(0);
+
+                        // Guardamos turno + puesto, ej: "A001;3"
+                        Servidor.ultimoAtendido = ticketAtendido.getNumero() + ";" + puesto;
+
+                        // Al puesto solo le mandamos el número de turno
+                        salida.writeUTF(ticketAtendido.getNumero());
+                        System.out.println("Atendiendo ticket: " 
+                                + ticketAtendido.getNumero() + " en puesto " + puesto);
+                    } else {
+                        salida.writeUTF("COLA_VACIA");
+                    }
+                }
+            }
+
+            // 3. PANTALLA PIDE EL ÚLTIMO ATENDIDO
+            else if (mensajeRecibido.equals("ULTIMO_ATENDIDO")) {
+                salida.writeUTF(Servidor.ultimoAtendido);
+            }
+
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+

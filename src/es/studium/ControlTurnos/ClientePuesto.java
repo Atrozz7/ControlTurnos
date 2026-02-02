@@ -10,30 +10,27 @@ import java.net.Socket;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-/**
- * @author Anabel
- */
 public class ClientePuesto extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	
-	String ipServidor = "localhost";
+    private static final long serialVersionUID = 1L;
+    private JTextField textField;
+
+    String ipServidor = "localhost";
     int puerto = 6666;
 
-	public ClientePuesto() {
-		setTitle("Cliente Puesto");
-		setSize(450, 350);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+    private int numeroPuesto;
 
-		JButton btnNewButton = new JButton("Libre");
+    public ClientePuesto(int numeroPuesto) {
+        this.numeroPuesto = numeroPuesto;
+
+        setTitle("Puesto " + numeroPuesto);
+        setSize(450, 350);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        JButton btnNewButton = new JButton("Libre");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // LLAMADA AL MÉTODO QUE CONECTA CON EL SERVIDOR
                 puestoLibre();
             }
         });
@@ -48,27 +45,23 @@ public class ClientePuesto extends JFrame {
 
         setVisible(true);
     }
-    
+
     private void puestoLibre() {
         try {
-       
             Socket socket = new Socket(ipServidor, puerto);
             DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
             DataInputStream entrada = new DataInputStream(socket.getInputStream());
 
-          
-            salida.writeUTF("SIGUIENTE_PUESTO");
+            // Enviamos el número del puesto
+            salida.writeUTF("SIGUIENTE_PUESTO_" + numeroPuesto);
 
-          
             String respuesta = entrada.readUTF();
 
             if (respuesta.equals("COLA_VACIA")) {
                 textField.setText("Sin turnos");
             } else {
-               
                 textField.setText(respuesta);
             }
-
 
             salida.close();
             entrada.close();
@@ -81,6 +74,9 @@ public class ClientePuesto extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ClientePuesto();
+        new ClientePuesto(1);
+        new ClientePuesto(2);
+        new ClientePuesto(3);
+        new ClientePuesto(4);
     }
 }

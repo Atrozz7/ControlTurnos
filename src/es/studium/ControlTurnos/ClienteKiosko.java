@@ -32,7 +32,7 @@ public class ClienteKiosko extends JFrame {
     private void solicitarTicketServidor() {
         try {
             // Conectamos al servidor (ajusta IP y puerto si es necesario)
-            Socket socket = new Socket("localhost", 6000);
+            Socket socket = new Socket("localhost", 6666);
             DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
             DataInputStream entrada = new DataInputStream(socket.getInputStream());
 

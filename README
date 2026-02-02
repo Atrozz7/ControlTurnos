@@ -1,0 +1,16 @@
+ControlTurnos
+Tenemos 5 clases:
+-Clase HiloServidor.
+
+-Clase Servidor, lo suyo sería un array list es de ticket (ArrayList <Ticket>), crea un objeto de la clase hilo y le manda el socket, le tiene que mandar el puesto al ClientePuesto.
+
+-Clase Cliente que coge el turno, esta no está relacionada, voy a administración, voy a … 
+
+-Clase ClientePantalla, aparece la información.
+
+-Clase Ticket que tiene el número, la fecha y la hora, el constructors que tiene los parámetros, getter y setters.
+No está conectado a la base de datos.
+
+-ClientePuesto: Se tiene que conectar al servidor y preguntar cual está libre.
+
+Un cliente que coge un turno, lo manda y le tiene que salir en una pantalla turno cuando esté libre la clase ClienteLibre, que ese es el que avisa al servidor.

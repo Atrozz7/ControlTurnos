@@ -53,7 +53,7 @@ public class ClientePantalla extends JFrame {
 
     // Añadir fila a la tabla
     public void agregarTicket(String turno, String puesto) {
-        modeloTabla.addRow(new Object[]{turno, puesto});
+        modeloTabla.insertRow(0, new Object[]{turno, puesto});
     }
 
     // Timer que consulta al servidor cada 1 segundo
